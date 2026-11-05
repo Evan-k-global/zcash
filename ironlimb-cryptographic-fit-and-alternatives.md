@@ -34,11 +34,11 @@ The output of Gate 1 must distinguish this architectural fit from measured super
 
 ## Why Ethereum settlement does not negate the fit
 
-The AAIF proposal describes Zeko's Mina origins and expansion of settlement options through a separate Ethereum architecture. Current documentation retains Mina-derived execution, zkApps, and proof formats while settling through an SP1 adapter. [AAIF proposal](https://github.com/aaif/project-proposals/issues/68), [Zeko FAQ](https://docs.zeko.io/about/faq)
+Zeko retains Mina-derived execution, zkApps, and proof formats while the selected Ethereum settlement path uses an SP1 adapter. [Zeko FAQ](https://docs.zeko.io/about/faq), [Ethereum settlement implementation](https://github.com/zeko-labs/ethereum-settlement)
 
 The fit for IronLimb resides in that retained execution/proof layer. Converting a final proof for Ethereum verification does not remove its application-level arithmetic or recursion capabilities. Settlement choice introduces different security dependencies; it does not establish or disprove the proposed cross-verification advantage.
 
-This answers the technical objection behind “why leave Mina.” The cited material explains an expansion and current direction, not a verified business motive for every strategic decision. IronLimb should not claim that Zeko changed settlement for Zcash or that its roadmap guarantees support indefinitely. The delivery document addresses that operational dependency directly.
+This answers the technical objection behind “why leave Mina.” The cited material documents the architecture, not a verified business motive for every strategic decision. IronLimb should not claim that Zeko changed settlement for Zcash or that its roadmap guarantees support indefinitely. The delivery document addresses that operational dependency directly.
 
 ## Alternatives
 
