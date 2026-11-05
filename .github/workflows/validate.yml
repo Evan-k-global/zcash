@@ -1,0 +1,27 @@
+name: Validate proposal
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  proposal:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@de492cf36cbab201753d720ce4f4e336cd688c94
+        with:
+          ruby-version: '3.3'
+      - name: Validate proposal
+        run: ruby scripts/validate_proposal.rb
+      - name: Exercise validation failures
+        run: python3 -m unittest discover -s tests -v
+      - name: Verify downloadable snapshot
+        run: python3 scripts/build_package.py --check
