@@ -18,7 +18,7 @@ Zcash provides shielded ZEC and cryptographic foundations compatible with Zeko's
 
 We choose Ethereum because private DeFi needs useful assets and application connections as well as a verifier. Its base ledger is transparent by default, so IronLimb must implement confidential application logic itself. Ethereum's ecosystem also has existing privacy technologies; our contribution is the Zcash-specific integration and its reusable proof infrastructure. [Ethereum privacy overview](https://ethereum.org/privacy/)
 
-The first market is the confidential ZEC/ETH RFQ exchange. Settling on Ethereum does not automatically connect a zkApp to existing Ethereum contracts or provide liquidity. Additional protocol adapters, messages, and liquidity are future integration work. Proof settlement also leaves application, DA, administrative, and exit assumptions to be addressed explicitly. [Zeko execution model](https://docs.zeko.io/about/faq), [Ethereum rollup architecture](https://ethereum.org/developers/docs/scaling/zk-rollups/)
+The first market is a private ZEC/ETH exchange, built on Zeko's existing private order book infrastructure. Settling on Ethereum does not automatically connect a zkApp to existing Ethereum contracts or provide liquidity. Additional protocol adapters, messages, and liquidity are future integration work. Proof settlement also leaves application, DA, administrative, and exit assumptions to be addressed explicitly. [Zeko execution model](https://docs.zeko.io/about/faq), [Ethereum rollup architecture](https://ethereum.org/developers/docs/scaling/zk-rollups/)
 
 ## Why Zeko
 
@@ -34,7 +34,7 @@ Mina shares these proof foundations. Ztarknet explores Cairo/STARK settlement on
 
 The testnet bridge will handle shielded deposits, encrypted claims, threshold reserve operations, withdrawals/refunds, and recovery. At least 10 external testers will complete the documented round trip. This integration is the system the later proof-verified exchange will reuse. Its acceptance criteria include the complete round trip and operating procedures.
 
-The exchange baseline is a confidential request-for-quote venue. A trader authorizes terms; one atomic transition settles both assets or neither. We will test minimum return, expiry, replay protection, conservation, encrypted note delivery, and recovery. Matchers or counterparties may see terms needed to fill orders. An AMM is comparison research rather than a prerequisite for this demonstration.
+The exchange baseline adapts Zeko's private order book, demonstrated on Sepolia, for confidential zkZEC/zkETH trading. A trader authorizes terms; each fill settles both assets or neither. Partial fills are supported, while overfills and one-sided settlement are rejected. We will test authorization, limit prices, expiry, cancellation, replay protection, conservation, encrypted note delivery, and recovery. Matchers or counterparties may see terms needed to fill orders.
 
 ## Custody and privacy, stated separately
 
@@ -51,7 +51,7 @@ We also separate confidential pool activity, shielded Zcash handling, and cross-
 | Startup | Setup | $5,000 | Reproducible environments and reporting |
 | 1 | 5 weeks | $50,000 | Statements, measured feasibility, authentication design |
 | 2 | 10 weeks | $85,000 | Working threshold-custody testnet bridge and 10 testers |
-| 3 | 8 weeks | $95,000 | Real proof-bound issuance and confidential RFQ |
+| 3 | 8 weeks | $95,000 | Real proof-bound issuance and confidential order book |
 | 4 | 14 weeks | $94,000 | Local consensus custody/migration/recovery prototype |
 | 5 | 8 weeks | $71,000 | Independent review, fixes, reproduced release |
 

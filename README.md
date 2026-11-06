@@ -9,12 +9,12 @@ IronLimb proposes a shielded-ZEC testnet bridge, proof-bound issuance, and a con
 ## Architecture and guarantees
 
 - **Zcash:** shielded ZEC remains on its native chain. Testnet reserves are threshold-controlled.
-- **Zeko:** private claims, programmable application constraints, recursive proofs, and atomic confidential RFQ settlement.
+- **Zeko:** private claims, programmable application constraints, recursive proofs, and atomic confidential order-book settlement.
 - **Ethereum:** the selected proof-settlement environment and connections to supported assets, with deployment-specific verifier, data-availability, administrative, and exit assumptions.
 
 Proof-verified deposits bind issuance to qualifying deposits. They cannot force reserve signers to redeem native ZEC. The separately gated consensus workstream investigates Zcash-enforced release on an isolated local network; public activation and production funds are outside this proposal. Shared Pasta proof foundations motivate cross-verification research, rather than establishing compatibility or performance by themselves.
 
-The [technical design](ironlimb-technical-design-and-threat-model.md) contains the architecture schematic, six-point statements in both directions, proposed relation sketches, uniqueness candidates, accounting transitions, and a worked deposit/trade/redemption example. The initial exchange is an RFQ venue; additional DeFi integrations and agent-payment policies are future applications, not baseline implementation promises.
+The [technical design](ironlimb-technical-design-and-threat-model.md) contains the architecture schematic, six-point statements in both directions, proposed relation sketches, uniqueness candidates, accounting transitions, and a worked deposit/trade/redemption example. The initial exchange adapts Zeko's existing private order book for confidential zkZEC/zkETH trading. Partial fills are supported; each fill settles both asset legs atomically, and cumulative fills cannot exceed the authorized order quantity. Additional DeFi integrations and agent-payment policies are future applications, not baseline implementation promises.
 
 ## Read the project
 
@@ -36,7 +36,7 @@ Gates 2 and 3 deliver the working testnet bridge and proof-enforced confidential
 - [Community forum post draft](ironlimb-forum-post.md)
 - [Downloadable proposal and resource snapshot](ironlimb-submission-package.zip)
 
-The ZCG application has been submitted as [issue #540](https://github.com/ZcashCommunityGrants/zcashcommunitygrants/issues/540); the forum discussion is the next publication step. The ZCG issue is authoritative for the funding request and accepted changes; this repository holds the supporting evidence and a versioned application copy. Pin supporting links to the submission commit when filing and keep subsequent amendments explicit. The forum draft is for the discussion, not an additional required application attachment.
+The ZCG application has been submitted as [issue #540](https://github.com/ZcashCommunityGrants/zcashcommunitygrants/issues/540), with community discussion on the [IronLimb forum thread](https://forum.zcashcommunity.com/t/grant-application-ironlimb-private-defi-for-zec-on-zeko/58977). The ZCG issue is authoritative for the funding request and accepted changes; this repository holds the supporting evidence and a versioned application copy. Pin supporting links to the submission commit when filing and keep subsequent amendments explicit. The forum draft is for the discussion, not an additional required application attachment.
 
 ## Team and delivery
 

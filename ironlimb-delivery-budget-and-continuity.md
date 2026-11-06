@@ -11,11 +11,13 @@ Request: **$400,000 over 45 weeks**. Planning baseline: January 4, 2027; adjust 
 | Startup | Before Gate 1 | $5,000 | Repositories, environments, dependency inventory, reporting/validation schedule |
 | 1: feasibility | 5 weeks | $50,000 | Both-direction statements, candidate measurements, authentication design, published continuation decision |
 | 2: testnet bridge | 10 weeks | $85,000 | Shielded round trip, threshold setup, refunds, recovery manifest, 10 external testers |
-| 3: verification and exchange | 8 weeks | $95,000 | Real accepted-root/deposit verification, atomic confidential RFQ, leakage/performance report |
+| 3: verification and exchange | 8 weeks | $95,000 | Real accepted-root/deposit verification, confidential order book with atomic fills, leakage/performance report |
 | 4: consensus prototype | 14 weeks | $94,000 | Local real-proof custody rules, migration, exact effects, DA/recovery exercises |
 | 5: review and release | 8 weeks | $71,000 | External findings, remediation, reproduced workflows, release and production-dependency report |
 
 Gate 2 pays for the bridge integration and operational workflows the later proof-verified exchange needs: shielded wallet flows, claim accounting, threshold reserve operations, withdrawal/refund handling, deployment and recovery, and external validation. An attested mint alone would not satisfy it.
+
+Gate 3 adapts Zeko's existing private order book, demonstrated on Sepolia, rather than funding a new exchange from scratch. New work integrates proof-bound ZEC issuance, encrypted-note accounting, and atomic zkZEC/zkETH settlement. Acceptance includes successful partial fills and rejection of overfills, expired or cancelled orders, unauthorized outputs, limit-price violations, and one-sided settlement; note recovery and observer-specific leakage remain measured deliverables.
 
 Gate 5 funds review, fixes, reproduction, and handoff. A decision document alone would not satisfy it. An honest no-go conclusion does not waive undelivered engineering or review commitments.
 
@@ -53,7 +55,7 @@ Effort below is compensation divided by the single $2,750 planning rate; one per
 | Startup | 0.36 | Dependency inventory and validation scheduling; $4,000 infrastructure and $1,000 compensation are included in category totals |
 | Gate 1 | 15.27 | Both verification statements, candidate benchmarks, and complete reverse-authentication architecture and cost assessment |
 | Gate 2 | 26.55 | Wallet/claim integration, threshold operations, withdrawals/refunds, deployment/recovery, UI, and 10-tester validation |
-| Gate 3 | 29.64 | Deposit and authenticated-state proof integration; differential/negative fixtures; encrypted-note accounting/recovery; atomic RFQ; proving and leakage instrumentation |
+| Gate 3 | 29.64 | Deposit and authenticated-state proof integration; differential/negative fixtures; encrypted-note accounting/recovery; private order-book integration and atomic fills; proving and leakage instrumentation |
 | Gate 4 | 27.27 | Selected reverse-authentication path and native withdrawal rules in local Zebra; migration/opening state; DA/recovery drills; design-review remediation |
 | Gate 5 | 9.82 | Findings remediation, workflow reproduction, release, integration documentation, and handoff |
 | **Total** | **108.91** | **Aggregate team effort over 45 calendar weeks** |

@@ -98,7 +98,7 @@ IronLimb extends ZEC's utility into private financial applications: logic execut
 
 The architecture combines complementary capabilities. Zcash provides shielded ZEC and cryptographic foundations compatible with Zeko's Pasta-based Kimchi/Pickles stack. Zeko provides programmable execution and recursive application proofs. We choose Ethereum for its established proof-verification and contract-enforced settlement infrastructure, developer tooling, and connectivity to financial assets and applications. The grant will measure the cross-verification advantage of the shared cryptography.
 
-This is a practical route to private applications for Zcash users while Zcash-native programmability and redemption mechanisms continue to develop. Ethereum's base ledger is transparent by default; IronLimb implements confidential application state and exchange logic rather than assuming privacy from settlement. The initial exchange is a ZEC/ETH RFQ venue. Access to other Ethereum DeFi protocols requires additional integrations and liquidity, beyond the baseline deliverable.
+This is a practical route to private applications for Zcash users while Zcash-native programmability and redemption mechanisms continue to develop. Ethereum's base ledger is transparent by default; IronLimb implements confidential application state and exchange logic rather than assuming privacy from settlement. The initial exchange adapts Zeko's existing private order book for confidential ZEC/ETH trading. Access to other Ethereum DeFi protocols requires additional integrations and liquidity, beyond the baseline deliverable.
 
 IronLimb is an application and interoperability project built around Zcash's existing Ironwood pool. Testnet reserves remain threshold-controlled, and Ethereum settlement does not remove that native custody dependence. Gate 4 investigates Zcash enforcing withdrawals from authenticated, accepted Zeko state on a local network. Production adoption remains separate, and the deployment's data-availability, administrative, and exit assumptions will be disclosed.
 ```
@@ -118,7 +118,7 @@ We will connect shielded ZEC to private Zeko applications with Ethereum settleme
 
 1. Specify both verification directions, benchmark candidate constructions, and establish continuation criteria.
 2. Ship an attested/threshold testnet bridge with deposits, withdrawals, refunds, and 10 external testers.
-3. Enforce proof-bound issuance and demonstrate atomic confidential ZEC/ETH RFQ settlement.
+3. Enforce proof-bound issuance and demonstrate atomic confidential ZEC/ETH order-book settlement.
 4. Prototype Zcash-enforced escrow, liability migration, and recovery on an isolated local network.
 5. Complete independent review, remediation, reproducible release, and a production-dependency decision.
 
@@ -128,7 +128,7 @@ Gate 2 establishes the bridge integration and operational workflows reused by Ga
 ## Solution Format
 
 ```text
-MIT-licensed original code, public specifications, benchmark harnesses, reference fixtures, a testnet bridge, confidential RFQ application, local consensus prototype, integration guides, and external review/remediation reports.
+MIT-licensed original code, public specifications, benchmark harnesses, reference fixtures, a testnet bridge, confidential order-book application, local consensus prototype, integration guides, and external review/remediation reports.
 
 Repositories include CONTRIBUTING.md, reproducible setup, CI, and monthly forum updates. Existing dependencies retain their licenses. The three supporting documents cover technical design, delivery/budget/continuity, and cryptographic fit.
 ```
@@ -177,7 +177,7 @@ Gate 1 benchmark questions:
 
 An infeasible reverse-authentication path blocks continuation unless an amended scope is approved. Signed roots, guest execution alone, and mock acceptance cannot satisfy proof-verified gates. Gate 4 uses an isolated local Zebra branch; public activation is separate.
 
-RFQ settlement enforces per-asset conservation, current nullifier state, minimum return, expiry, and replay protection. We measure public, operator, matcher, and network leakage and test encrypted-note recovery. The UI discloses threshold custody, verifier mode, and administrative powers. Migration requires reserve reconciliation; commitments and OP_RETURN anchors establish neither data availability nor enforced custody.
+We will adapt Zeko's private order book, demonstrated on Sepolia, for confidential zkZEC/zkETH trading, reducing implementation risk. New work adds proof-bound ZEC issuance, encrypted-note accounting, and atomic settlement, enforcing authorization, conservation, nullifier checks, limit prices, expiry, cancellation, and replay protection while allowing partial fills and preventing overfills. We measure public, operator, matcher, and network leakage and test encrypted-note recovery. The UI discloses threshold custody, verifier mode, and administrative powers. Migration requires reserve reconciliation; commitments and OP_RETURN anchors establish neither data availability nor enforced custody.
 
 The technical design contains branch-neutral relation sketches, accounting transitions, and validation order. Mina shares the proof foundations; Zeko supplies the selected Ethereum-connected execution path. The alternatives document compares Mina, Ztarknet, and Aztec without unmeasured speed or uniqueness claims.
 ```
@@ -295,7 +295,7 @@ ETH adds separate bridge and issuer/asset-mapping assumptions. Unsupported legac
 - Reproducible candidate-verifier costs and a reviewed Gate 1 continuation decision.
 - A working threshold-custody testnet round trip completed by at least 10 external testers.
 - Real proof-bound issuance under authenticated state; invalid proof, duplicate claim, wrong recipient/domain, and reorganization fixtures rejected.
-- Atomic confidential ZEC/ETH RFQ settlement; no unauthorized, expired, below-limit, or partial fill succeeds in the test suite.
+- Atomic confidential ZEC/ETH order-book settlement supports partial fills; unauthorized fills, expired or cancelled orders, limit-price violations, overfills, and one-sided settlement are rejected.
 - An intended-user representative reproduces the worked example from a clean deployment: deposit 10 test ZEC, trade 4 zkZEC for agreed zkETH, redeem the remaining 6, and reconcile claims and reserves against the documented fixture, with fees funded and recorded separately.
 - Published proving and leakage results for public, operator, matcher, and network observers.
 - A reproducible local escrow/migration/recovery prototype and explicit outcomes for censorship, shutdown, and missing data.
@@ -359,21 +359,21 @@ Startup totals $5,000: $4,000 hardware/software for repository/CI infrastructure
 
 - Milestone: 3
   Amount (USD): 95000
-  Budget Rationale: "Compensation $81,500 (approximately 29.64 person-weeks); infrastructure $8,500; external leakage/reproducibility validation $5,000. Funds selected deposit/authenticated-state proof integration, differential and adversarial fixtures, encrypted-note accounting and recovery, atomic RFQ constraints, and proving/leakage instrumentation."
+  Budget Rationale: "Compensation $81,500 (approximately 29.64 person-weeks); infrastructure $8,500; external leakage/reproducibility validation $5,000. Funds selected deposit/authenticated-state proof integration, differential and adversarial fixtures, encrypted-note accounting and recovery, atomic order-book constraints, and proving/leakage instrumentation."
   Expected Completion Date: "2027-06-13"
   User Stories:
     - "As a builder, I want deposit proofs enforced under authenticated Zcash state so that issuance does not depend on deposit attestation."
     - "As a trader, I want an atomic confidential ZEC/ETH exchange so that either my authorized trade settles completely or neither leg executes."
   Deliverables:
     - "Selected proof components with real accepted-root/deposit verification and differential/negative fixtures."
-    - "Encrypted-note pool, atomic RFQ, note recovery, performance/leakage report, and bounded AMM comparison."
+    - "Encrypted-note pool, confidential order book with atomic settlement, note recovery, and performance/leakage report."
   Acceptance Criteria:
     - "A builder representative reproduces real-proof issuance before exchange integration."
     - "No attestation or mock verifier bypass is used in the proof-verified acceptance path."
     - "Invalid proofs, wrong domains/recipients, duplicate claims, and specified reorganization cases fail."
     - "Trader representatives reproduce complete atomic settlement."
     - "An intended-user representative reproduces the deposit-10, trade-4, redeem-6 worked example from clean setup, with request-bound payout evidence, post-step balances, separately funded/recorded fees, and reserve/liability reconciliation recorded."
-    - "Double spends, expired orders, unauthorized outputs, and below-limit fills are rejected."
+    - "Double spends, expired or cancelled orders, unauthorized outputs, limit-price violations, overfills, and one-sided settlement are rejected; valid partial fills succeed."
     - "The report separately measures public, operator, matcher, and network leakage."
     - "The UI continues to identify native reserve custody as threshold-controlled."
 

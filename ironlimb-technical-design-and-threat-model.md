@@ -4,7 +4,7 @@ Supporting document 1 · November 5, 2026 · Proposed design, not implemented re
 
 ## Deliverable
 
-Build a shielded-ZEC testnet bridge and confidential ZEC/ETH RFQ exchange, then a local research prototype of Zcash-enforced redemption. The testnet application uses threshold custody. The consensus prototype investigates a different release mechanism; it does not retroactively remove trust from earlier deposits.
+Build a shielded-ZEC testnet bridge and confidential ZEC/ETH order-book exchange, then a local research prototype of Zcash-enforced redemption. The exchange adapts Zeko's existing private order book, demonstrated on Sepolia; proof-bound ZEC issuance and its integration remain new IronLimb work. The testnet application uses threshold custody. The consensus prototype investigates a different release mechanism; it does not retroactively remove trust from earlier deposits.
 
 IronLimb is an application and interoperability project built around Zcash’s existing Ironwood pool. Its confidential note pool on Zeko is application state, not a new Zcash shielded pool.
 
@@ -23,7 +23,7 @@ flowchart TB
   subgraph TESTNET["Gates 2–3: threshold-custody testnet"]
     Z["Zcash shielded reserves: threshold-controlled"]
     D["Deposit acceptance: attested at Gate 2; real proofs at Gate 3"]
-    P["Zeko private claims and atomic RFQ"]
+    P["Zeko private claims and atomic order-book settlement"]
     E["Ethereum settlement: selected verifier and deployment profile"]
     S["Reserve signers: may refuse or steal"]
     U["Authorized Zcash recipient"]
@@ -80,7 +80,7 @@ An included output is not proof of perpetual reserve backing: the custodian can 
 
 IronLimb reuses established Zcash and Zeko proof-system machinery. It does not propose new curves, a new proving system, a new Zcash shielded pool, or a redesign of the deployed Ironwood Action circuit.
 
-The integration still needs application-specific proof relations and their implementation. Candidate A requires expressing the existing Halo2 verification algorithm as constraints in Kimchi; this is a new verifier circuit even though the algorithm being checked already exists. Candidate B requires constraints for the selected note-opening/inclusion and credit-binding relation. Confidential transfers and RFQ settlement require constraints for authorization, uniqueness, conservation, and exchange terms. Gate 4 adds a local consensus-verification/custody prototype.
+The integration still needs application-specific proof relations and their implementation. Candidate A requires expressing the existing Halo2 verification algorithm as constraints in Kimchi; this is a new verifier circuit even though the algorithm being checked already exists. Candidate B requires constraints for the selected note-opening/inclusion and credit-binding relation. Confidential transfers and order-book settlement reuse existing Zeko application machinery while integrating constraints for authorization, uniqueness, conservation, and exchange terms with IronLimb's claim accounting. Gate 4 adds a local consensus-verification/custody prototype.
 
 The implementation lead therefore owns provable-program engineering, constraint completeness, tests, and reference compatibility. The title does not imply invention of new cryptography. Independent protocol/security review remains necessary for the newly implemented relations.
 
@@ -174,7 +174,7 @@ Names below describe logical states; Gate 1 specifies their commitments, authent
 | Transition | Required evidence/invariant | Native custody consequence |
 | --- | --- | --- |
 | Uncredited deposit → active claim | Qualifying deposit, authorized credit, uniqueness, per-asset issuance accounting; real proof enforcement from Gate 3 | Native ZEC remains under the reserve threshold |
-| Active claims → exchanged active claims | Both parties' authorization, current spend state, per-asset conservation, limits/expiry; both legs atomic | No native ZEC moves; ownership of liabilities changes |
+| Active claims → exchanged active claims | Both parties' authorization, current spend and order state, per-asset conservation, limits/expiry, cancellation status, and remaining quantity; each fill's two legs atomic | No native ZEC moves; ownership of liabilities changes |
 | Active claim → withdrawal pending | Authorized request encumbers the amount; it cannot trade or create another withdrawal | A request does not compel threshold signers to pay |
 | Withdrawal pending → redeemed | Authenticated payout bound to this request on testnet; the selected real-proof consensus release in Gate 4 | Finalize consumption once; do not count the payout and the claim as simultaneous spendable value |
 | Withdrawal pending → active claim/refund | Cancellation evidence must exclude a competing payout, including one already authorized but not yet confirmed | No refund based solely on timeout or an operator's assertion of nonpayment |
@@ -205,11 +205,15 @@ Illustrative Gate 3 testnet execution with fees omitted, not a quoted exchange r
 
 Gate 4 investigates a different native release mechanism. It cannot be substituted into this example before its proof path, accounting, migration, and recovery rules are implemented and reviewed.
 
-## Confidential RFQ
+## Confidential order book
 
-One transition consumes both traders' authorized inputs and creates the agreed encrypted outputs. It enforces asset conservation, current nullifier state, minimum return, expiry, and replay protection. Failed settlement must not leave one leg executed.
+The baseline adapts Zeko's existing private order book for confidential zkZEC/zkETH trading. Reusing the Sepolia-demonstrated implementation reduces implementation risk; proof-bound ZEC issuance, encrypted-note accounting, and the integrated settlement constraints remain proposed IronLimb deliverables.
 
-The baseline protects individual pool balances and amounts from direct public disclosure. Matchers/counterparties may learn agreed terms. Wallet recovery includes encrypted note retrieval and restoration, with fee-account linkage measured. A private AMM is comparison research, not a baseline deliverable.
+Each fill consumes authorized inputs and creates the agreed encrypted outputs in one atomic transition. Settlement enforces order authorization, per-asset conservation, current nullifier state, limit prices, expiry, cancellation, and replay protection. Partial fills are supported: a fill may execute less than the full order, but its two asset legs must settle together. Cumulative fills cannot exceed the authorized order quantity. Concurrent fills and cancellation must be checked against accepted order state so a stale match cannot overfill or execute a cancelled order. Failed settlement must not consume inputs, update filled quantity, or leave one asset leg executed.
+
+The integrated design must specify how order identity, authorized terms, cumulative filled quantity, cancellation state, and note nullifiers are bound into acceptance. Order tracking and note-spend uniqueness are distinct obligations; preventing a note double spend alone does not establish the remaining order quantity. Validation includes successful partial fills, sequential and concurrent overfill attempts, cancellation/fill races, expired orders, limit-price violations, and one-sided settlement attempts.
+
+The baseline protects individual pool balances and amounts from direct public disclosure. Matchers/counterparties may learn agreed terms. Wallet recovery includes encrypted note retrieval and restoration, with fee-account linkage measured.
 
 ## Adversaries and validation
 
@@ -220,7 +224,7 @@ The baseline protects individual pool balances and amounts from direct public di
 | Malicious sequencer | Test censorship and shutdown; claim independent exit only after a successful drill |
 | Withholding DA/witness service | Detect the failure and exercise documented reconstruction; commitments alone do not prove retrieval |
 | False chain view or reorg | Apply explicit selection/freshness rules and stop acceptance on inconsistent history |
-| Matcher/front end | Enforce user-authorized terms; disclose what order data it learns |
+| Matcher/front end | Enforce user-authorized terms and current order state; reject overfills and cancelled orders; disclose what order data it learns |
 | Admin or dependency change | Domain-bind configuration, retain evidence, pause affected operations, and revalidate |
 
 Before accepting a state that could make exits depend on new data, specify how that data's availability is enforced. Recovery must use a defined accepted state, prevent double claims, and preserve any application encumbrances. A missing-data drill that merely detects failure is not a successful independent-exit drill.
