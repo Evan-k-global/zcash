@@ -77,15 +77,15 @@ Martin Ondejka leads technical delivery through the Zeko Labs engineering team. 
 
 ## Sourced team record
 
-The [Zeko AAIF proposal](https://github.com/aaif/project-proposals/issues/68) and [maintainer roster](https://github.com/zeko-labs/aaif/blob/main/MAINTAINERS.md) identify:
+The applicant identifies the following delivery team; linked core implementation provides evidence of relevant prior work:
 
 - **Zeko Labs Inc.** as contributing entity; `@zekoxyz` is its team maintainer account.
-- **Evan Kereiakes, `@Evan-k-global`**, as AAIF liaison/application contact and contributor of reference integrations, compatibility tests, reproducible evidence, and documentation. Contact: contact@zeko.io. IronLimb application contact and delivery coordinator.
+- **Evan Kereiakes, `@Evan-k-global`**, as application contact and contributor of reference integrations, compatibility tests, reproducible evidence, and documentation. Contact: contact@zeko.io. IronLimb application contact and delivery coordinator.
 - **Martin Ondejka, `@MartinOndejka`**, as core rollup maintainer, including [settlement recovery](https://github.com/zeko-labs/zeko/commit/7acd9a9b23d11282517381e04c15690c5198cbea) and [state updates gated by settlement finality](https://github.com/zeko-labs/zeko/commit/67a453c25d8606ddc55f6e0e0f3e2eb531ac2c2b). IronLimb technical lead, identified by the applicant, leading the Zeko team. The applicant also confirms that he has worked with specialist cryptographers and independent security auditors during Zeko development; Martin manages individual IronLimb assignments against milestone needs and available capacity.
 
 The linked work is evidence of relevant prior implementation, not completed IronLimb work or independent production adoption. The [core audit index](https://github.com/zeko-labs/zeko/tree/compatible/audits) documents component-specific assessments; they do not audit IronLimb's new circuits, custody, or application.
 
-The AAIF proposal discloses Zeko Labs/investor support for existing development and infrastructure. The applicant confirms no previous ZCG grants and no other funding received or planned for IronLimb. The application selects Yes for organizational Other Funding Sources and explains the existing Zeko Labs/investor support separately. The Zeko Labs affiliation is disclosed. Track individual allocations and incremental costs during funded implementation. Separate pre-existing infrastructure from grant-funded additions in time and expense records.
+Zeko Labs’ existing platform has been supported by company and investor funding. The applicant confirms no previous ZCG grants and no other funding received or planned for IronLimb. This request funds new Zcash-specific verification, integration, confidential exchange, and native-redemption research. Existing Zeko code and prior audits are background resources, not grant-funded deliverables. Track grant costs separately and exclude costs funded elsewhere. The application selects Yes for organizational Other Funding Sources and distinguishes that background support from this project.
 
 ## Settlement and native-custody boundaries
 

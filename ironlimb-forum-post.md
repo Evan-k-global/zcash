@@ -1,14 +1,16 @@
-# IronLimb: shielded ZEC deposits and confidential ZEC/ETH trading on Zeko
+# Grant Application — IronLimb: Private DeFi for ZEC on Zeko
 
 *Private applications for Zcash, powered by Zeko.*
 
-Forum draft · November 5, 2026 · Not posted
+**Submitted grant application:** [ZCG issue #540](https://github.com/ZcashCommunityGrants/zcashcommunitygrants/issues/540)
+
+**Project repository:** [zeko-labs/zcash](https://github.com/zeko-labs/zcash)
 
 We are proposing IronLimb to bring private application logic and programmability to the Zcash ecosystem through Zeko execution and Ethereum settlement. We will deliver a working shielded-ZEC testnet bridge, reusable deposit-verification components, and confidential ZEC/ETH trading. We are requesting **$400,000 over 45 weeks**, including a separately gated local prototype of Zcash-enforced redemption.
 
 IronLimb is the application and interoperability project, while Ironwood remains the underlying Zcash shielded pool. The practical goal is straightforward: make ZEC useful in financial applications without exposing users' balances and trading amounts, while being clear about who controls native funds at every stage. The first public demonstration is a shielded test-ZEC deposit, a Zeko claim, and redemption back to Zcash. Proof-bound issuance and confidential atomic trading follow.
 
-Applicant: **Zeko Labs Inc.** Application contact: **Evan Kereiakes (@Evan-k-global)**, contact@zeko.io. Our [maintainer record and prior work](https://github.com/zeko-labs/aaif/blob/main/MAINTAINERS.md) identify the existing team and contributions. Martin Ondejka (@MartinOndejka) leads the Zeko team delivering the technical work, drawing on its experience building the rollup with specialist cryptographic input and independent security review. We will select an external security reviewer from qualified existing relationships or Zcash-community-recommended specialists through an agreed scope and quote; no engagement is represented as confirmed. The budget represents aggregate team effort, with individual assignments managed by Martin against milestone requirements and available capacity; independent review is separately budgeted and intended-user validators are confirmed for the relevant gates.
+Applicant: **Zeko Labs Inc.** Application contact: **Evan Kereiakes (@Evan-k-global)**, contact@zeko.io. Martin Ondejka (@MartinOndejka) leads the Zeko team delivering the technical work, drawing on its experience building the rollup with specialist cryptographic input and independent security review. We will select an external security reviewer from qualified existing relationships or Zcash-community-recommended specialists through an agreed scope and quote; no engagement is represented as confirmed. The budget represents aggregate team effort, with individual assignments managed by Martin against milestone requirements and available capacity; independent review is separately budgeted and intended-user validators are confirmed for the relevant gates.
 
 ## Why this architecture
 
@@ -63,8 +65,8 @@ The network continuity plan covers Zeko support changes, Sepolia changes, and DA
 
 ## Public outputs and next steps
 
-Original grant-funded software will be MIT licensed. The three supporting documents provide the technical threat model, budget/team/continuity plan, and sourced cryptographic comparison. Existing dependencies retain their licenses; previous Zeko component audits do not cover IronLimb. We have received no previous ZCG grants and have no other funding received or planned for IronLimb. Historical Zeko Labs/investor support for the existing stack is separate from the new work requested here.
+Original grant-funded software will be MIT licensed. The supporting documents provide the [technical design and threat model](https://github.com/zeko-labs/zcash/blob/main/ironlimb-technical-design-and-threat-model.md), [delivery, budget, and continuity plan](https://github.com/zeko-labs/zcash/blob/main/ironlimb-delivery-budget-and-continuity.md), and [cryptographic fit and alternatives](https://github.com/zeko-labs/zcash/blob/main/ironlimb-cryptographic-fit-and-alternatives.md). Existing dependencies retain their licenses; previous Zeko component audits do not cover IronLimb. We have received no previous ZCG grants and have no other funding received or planned for IronLimb. The grant funds new Zcash-specific components and does not duplicate costs funded elsewhere.
 
-When posting, link the three existing supporting documents or their issue attachments and insert the submitted GitHub application link. Martin manages team allocation and review arrangements through the delivery gates. The final forum post should link the issue and the issue should link this thread.
+Martin manages team allocation and review arrangements through the delivery gates. We will use this discussion for community feedback, progress updates, and milestone evidence.
 
 We welcome technical feedback on the deposit statement and uniqueness construction, the two proof routes, the reverse-verification interface, and what independent recovery must demonstrate. The ambition is native ZEC utility with confidential applications; the way to earn that claim is working code and reviewable evidence.

@@ -36,7 +36,7 @@ Gates 2 and 3 deliver the working testnet bridge and proof-enforced confidential
 - [Community forum post draft](ironlimb-forum-post.md)
 - [Downloadable proposal and resource snapshot](ironlimb-submission-package.zip)
 
-No ZCG application issue or forum discussion has been submitted for this proposal. Once filed, the ZCG issue is authoritative for the funding request and accepted changes; this repository holds the supporting evidence and a versioned application copy. Pin supporting links to the submission commit when filing and keep subsequent amendments explicit. The forum draft is for the discussion, not an additional required application attachment.
+The ZCG application has been submitted as [issue #540](https://github.com/ZcashCommunityGrants/zcashcommunitygrants/issues/540); the forum discussion is the next publication step. The ZCG issue is authoritative for the funding request and accepted changes; this repository holds the supporting evidence and a versioned application copy. Pin supporting links to the submission commit when filing and keep subsequent amendments explicit. The forum draft is for the discussion, not an additional required application attachment.
 
 ## Team and delivery
 

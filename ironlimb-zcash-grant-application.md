@@ -11,7 +11,7 @@ Copy only the contents of each code block into the corresponding field. For drop
 
 The application, forum draft, and three supporting documents are stored together in this project folder. Attach the three supporting files to the GitHub issue or supply accessible links; the supporting entries below link to the Zeko Labs main branch; pin them to the submission commit when filing. Applicant disclosures record no prior ZCG grants and no other IronLimb-specific funding; organizational support for the existing Zeko stack is disclosed under Other Funding Sources. Martin is accountable for technical delivery through the Zeko Labs engineering team. Workstream allocations are aggregate effort rather than five distinct hires; individual assignments and capacity will be managed against milestones. The applicant has confirmed the listed application owners and discovery path. The proposed schedule allocates fourteen weeks to Gate 4 and eight to Gate 5. Reviewer selection, operational assignments, and intended-user validation are managed through the delivery gates, not represented as completed engagements.
 
-Draft scheduling assumption: funded work starts January 4, 2027 and finishes November 14, 2027. Milestone dates reflect 45 sequential weeks and must be updated if the funded start changes. Budget allocations below are proposed planning caps, not vendor quotations. No ZCG application has been submitted. This file is the repository proposal snapshot; once filed, the official ZCG issue governs the request and accepted amendments.
+Draft scheduling assumption: funded work starts January 4, 2027 and finishes November 14, 2027. Milestone dates reflect 45 sequential weeks and must be updated if the funded start changes. Budget allocations below are proposed planning caps, not vendor quotations. The application has been submitted as [ZCG issue #540](https://github.com/ZcashCommunityGrants/zcashcommunitygrants/issues/540). This file is the repository proposal copy; the official ZCG issue governs the request and accepted amendments.
 
 
 </details>
@@ -57,7 +57,7 @@ Research & Development
 ```yaml
 Name: "Martin Ondejka (@MartinOndejka)"
 Role: "Technical lead, Zeko Labs"
-Background: "Martin leads the Zeko engineering team building its recursive zero-knowledge rollup. His core protocol work includes Ethereum settlement recovery and state updates gated by settlement finality. He has worked with specialist cryptographers and independent security auditors during Zeko's development. Prior work: https://github.com/zeko-labs/aaif/blob/main/MAINTAINERS.md ; assessment scopes: https://github.com/zeko-labs/zeko/tree/compatible/audits ."
+Background: "Martin leads the Zeko engineering team building its recursive zero-knowledge rollup. His core protocol work includes Ethereum settlement recovery and state updates gated by settlement finality. He has worked with specialist cryptographers and independent security auditors during Zeko's development. Prior work: https://github.com/zeko-labs/zeko/commit/7acd9a9b23d11282517381e04c15690c5198cbea ; assessment scopes: https://github.com/zeko-labs/zeko/tree/compatible/audits ."
 Responsibilities: "Lead the Zeko team's delivery of IronLimb's verification components, protocol integration, confidential applications, and recovery design; coordinate specialist input and independent review."
 ```
 
@@ -81,7 +81,7 @@ Responsibilities: "Lead the Zeko team's delivery of IronLimb's verification comp
       Person-Weeks: 3.91
 - Name: "Evan Kereiakes (@Evan-k-global)"
   Role: "Application contact and delivery coordination"
-  Background: "Zeko AAIF liaison and contributor of reference integrations, compatibility tests, reproducible evidence, and documentation."
+  Background: "Contributor of reference integrations, compatibility tests, reproducible evidence, and documentation."
   Responsibilities: "Coordinate the application, reporting, delivery evidence, and external review. Contact: contact@zeko.io."
 ```
 
@@ -264,9 +264,9 @@ Yes
 ## Other Funding Sources Details
 
 ```text
-Zeko Labs and its investors have supported development and infrastructure for the existing Zeko stack, as disclosed in our AAIF proposal: https://github.com/aaif/project-proposals/issues/68 . We disclose that organizational support here because the applicant is Zeko Labs Inc.
+Zeko Labs’ existing platform has been supported by company and investor funding. No other funding has been received or is planned for IronLimb.
 
-No other funding has been received or is planned for IronLimb itself. The request covers new Zcash-specific verification, integration, exchange, and consensus research. Existing Zeko code and prior audits are background assets, not newly funded deliverables. Costs already supported elsewhere are excluded, and grant work will be tracked separately to prevent duplicate funding.
+This request funds new Zcash-specific verification, integration, confidential exchange, and native-redemption research. Existing Zeko code and prior audits are background resources, not grant-funded deliverables. Grant costs will be tracked separately and will not duplicate costs funded elsewhere.
 ```
 
 ## Implementation Risks
